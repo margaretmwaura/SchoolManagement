@@ -34,9 +34,12 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
     String newToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_from_firebase);
 
+
+        gettingFirebaseToken();
 //        Getting the elements of the UI
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         studentAdapter = new StudentAdapter();
@@ -85,7 +88,7 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
     @Override
     public void onClick(View view, int position)
     {
-        gettingFirebaseToken();
+        Log.d("TheToken ","This is a token " + newToken);
         Log.d("CLickingItem","A recyler view item has been called ");
       Student student = studentList.get(position);
       String name = "MagiiiShii";
@@ -121,13 +124,16 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
 
     public void gettingFirebaseToken()
     {
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( ReadingFromFirebase.this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
-                newToken = instanceIdResult.getToken();
+               newToken = instanceIdResult.getToken();
                 Log.e("newToken",newToken);
 
             }
         });
+
+
     }
 }
