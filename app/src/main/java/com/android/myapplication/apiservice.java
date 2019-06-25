@@ -17,6 +17,9 @@ public interface apiservice
     Call<ResponseBody> insertData(@Field("name") String name , @Field("email") String email , @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("/android/update.php")
+    Call<ResponseBody> updateData(@Field("name") String name , @Field("email") String email, @Field("token") String token);
+
     @GET("/android/read.php")
     Call<List<Student>> readData();
 }

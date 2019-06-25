@@ -5,19 +5,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class Student
 {
+    @SerializedName("id")
+    int id;
+
     @SerializedName("name")
-            @Expose
     String name;
 
     @SerializedName("email")
-            @Expose
     String email;
 
     @SerializedName("password")
-            @Expose
     String password;
 
-
+    public int getId()
+    {
+        return this.id;
+    }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

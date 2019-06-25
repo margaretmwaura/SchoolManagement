@@ -1,11 +1,8 @@
 package com.android.myapplication;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -17,6 +14,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("Sms","Sms has been sent");
                         }
                         Toast.makeText(MainActivity.this, "Adding the user was a success", Toast.LENGTH_SHORT).show();
+
+                        Intent intent= new Intent(MainActivity.this, ReadingFromFirebase.class);
+                        startActivity(intent);
                     }
 
                     @Override
