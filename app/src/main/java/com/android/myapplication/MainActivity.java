@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         ed_email = (EditText) findViewById(R.id.editText_email);
         ed_password = (EditText) findViewById(R.id.editText_password);
         btn_submit = (Button) findViewById(R.id.button);
+     
+
+
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
