@@ -4,6 +4,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -12,14 +13,9 @@ import retrofit2.http.POST;
 public interface apiservice
 {
 
-    @FormUrlEncoded
-    @POST("/android/index.php")
-    Call<ResponseBody> insertData(@Field("name") String name , @Field("email") String email , @Field("password") String password);
+    @POST("students")
+    Call<Student> insertData(@Body Student student);
 
-    @FormUrlEncoded
-    @POST("/android/update.php")
-    Call<ResponseBody> updateData(@Field("name") String name , @Field("email") String email, @Field("token") String token);
-
-    @GET("/android/read.php")
+    @GET("students")
     Call<List<Student>> readData();
 }

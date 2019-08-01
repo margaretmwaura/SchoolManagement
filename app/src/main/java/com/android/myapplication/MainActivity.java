@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         .create();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.43.62")
+                        .baseUrl("http://127.0.0.1:8000/api/")
                         .client(client)
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
@@ -68,10 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 student.setEmail(email);
                 student.setPassword(password);
 
-                Call<ResponseBody> myCall = service.insertData(name,email,password);
-                myCall.enqueue(new Callback<ResponseBody>() {
+                Call<Student> myCall = service.insertData(student);
+                myCall.enqueue(new Callback<Student>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                    public void onResponse(Call<Student> call, Response<Student> response)
                     {
                         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS)
                                 != PackageManager.PERMISSION_GRANTED)
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t)
+                    public void onFailure(Call<Student> call, Throwable t)
                     {
                         Toast.makeText(MainActivity.this,"Adding the user was a fail " , Toast.LENGTH_LONG).show();
                         Log.d("ErrorAuthenticating","This was the error " + t.getMessage());

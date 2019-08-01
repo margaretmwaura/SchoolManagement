@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
@@ -14,6 +15,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -106,20 +108,20 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
                 .build();
 
         apiservice service = retrofit.create(apiservice.class);
-        Call<ResponseBody> myCall = service.updateData(name,email,newToken);
-        myCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
-            {
-                Toast.makeText(ReadingFromFirebase.this, "Data has been updated ", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t)
-            {
-                Toast.makeText(ReadingFromFirebase.this, "Error reading data", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Call<ResponseBody> myCall = service.(name,email,newToken);
+//        myCall.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+//            {
+//                Toast.makeText(ReadingFromFirebase.this, "Data has been updated ", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t)
+//            {
+//                Toast.makeText(ReadingFromFirebase.this, "Error reading data", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public void gettingFirebaseToken()
