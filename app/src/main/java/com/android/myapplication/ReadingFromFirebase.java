@@ -61,7 +61,7 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://e3e64f2f.ngrok.io/api/")
+                .baseUrl("http://f48c3c50.ngrok.io/api/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -102,26 +102,27 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.62")
+                .baseUrl("http://f48c3c50.ngrok.io/api/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         apiservice service = retrofit.create(apiservice.class);
-//        Call<ResponseBody> myCall = service.(name,email,newToken);
-//        myCall.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
-//            {
-//                Toast.makeText(ReadingFromFirebase.this, "Data has been updated ", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t)
-//            {
-//                Toast.makeText(ReadingFromFirebase.this, "Error reading data", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        Call<ResponseBody> myCall = service.update(3,"Gladys","gladys@gmail.com","0710120612");
+        myCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("Success","Successfully updted data ");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t)
+            {
+
+                Log.d("Failure","No date has been added ");
+            }
+        });
+
     }
 
     public void gettingFirebaseToken()

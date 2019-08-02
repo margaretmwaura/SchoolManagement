@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         .create();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://e3e64f2f.ngrok.io/api/")
+                        .baseUrl("http://f48c3c50.ngrok.io/api/")
                         .client(client)
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
