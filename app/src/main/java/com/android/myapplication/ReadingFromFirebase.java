@@ -61,7 +61,7 @@ public class ReadingFromFirebase extends AppCompatActivity implements OnItemClic
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.62")
+                .baseUrl("http://e3e64f2f.ngrok.io/api/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();

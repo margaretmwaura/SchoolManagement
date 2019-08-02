@@ -26,10 +26,11 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".ReadingFromFirebase" />
+        <activity android:name=".ReadingFromFirebase" >
+
+        </activity>
 
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

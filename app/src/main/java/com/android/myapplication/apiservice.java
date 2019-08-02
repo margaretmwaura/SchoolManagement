@@ -13,8 +13,14 @@ import retrofit2.http.POST;
 public interface apiservice
 {
 
+    @FormUrlEncoded
     @POST("students")
-    Call<Student> insertData(@Body Student student);
+     Call<ResponseBody> store(
+            @Field( "name" ) String name,
+            @Field ( "email" ) String email,
+            @Field ( "password" ) String password
+
+    );
 
     @GET("students")
     Call<List<Student>> readData();

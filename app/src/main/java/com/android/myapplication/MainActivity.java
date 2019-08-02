@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         .create();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://127.0.0.1:8000/api/")
+                        .baseUrl("http://e3e64f2f.ngrok.io/api/")
                         .client(client)
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
@@ -68,40 +68,23 @@ public class MainActivity extends AppCompatActivity {
                 student.setEmail(email);
                 student.setPassword(password);
 
-                Call<Student> myCall = service.insertData(student);
-                myCall.enqueue(new Callback<Student>() {
+                Call<ResponseBody> myCall = service.store(name,email,password);
+                myCall.enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onResponse(Call<Student> call, Response<Student> response)
-                    {
-                        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS)
-                                != PackageManager.PERMISSION_GRANTED)
-                        {
-                            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
-                                    Manifest.permission.SEND_SMS))
-                            {
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                            } else {
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{Manifest.permission.SEND_SMS},
-                                        0);
-                            }
-                        }
-                        else
+                        if (response != null)
                         {
-                            SmsManager smsManager = SmsManager.getDefault();
-                            smsManager.sendTextMessage("0775502733", null, "We doing fine fine", null, null);
-                            Toast.makeText(getApplicationContext(), "SMS sent.",
-                                    Toast.LENGTH_LONG).show();
-                            Log.d("Sms","Sms has been sent");
-                        }
-                        Toast.makeText(MainActivity.this, "Adding the user was a success", Toast.LENGTH_SHORT).show();
+                            Log.d("Successful", "User has beeen added ");
+                            Toast.makeText(MainActivity.this, "Adding the user was a success", Toast.LENGTH_SHORT).show();
 
-                        Intent intent= new Intent(MainActivity.this, ReadingFromFirebase.class);
-                        startActivity(intent);
+                            Intent intent = new Intent(MainActivity.this, ReadingFromFirebase.class);
+                            startActivity(intent);
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<Student> call, Throwable t)
+                    public void onFailure(Call<ResponseBody> call, Throwable t)
                     {
                         Toast.makeText(MainActivity.this,"Adding the user was a fail " , Toast.LENGTH_LONG).show();
                         Log.d("ErrorAuthenticating","This was the error " + t.getMessage());
